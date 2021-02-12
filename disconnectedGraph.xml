@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph name="disconnected Graph">
+<vertex ID="0">
+<connection destination="1" weight="51" />
+</vertex>
+<vertex ID="1">
+<connection destination="0" weight="51" />
+</vertex>
+<vertex ID="2">
+<connection destination="3" weight="8" />
+</vertex>
+<vertex ID="3">
+<connection destination="2" weight="8" />
+</vertex>
+</graph>
