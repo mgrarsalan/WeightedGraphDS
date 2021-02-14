@@ -312,6 +312,12 @@ public class WeightedGraph implements GraphProcessing {
 		}
 	}
 	
+	/**
+	 * @return the adjacencyList
+	 */
+	public LinkedList<LinkedList<Vertex>> getAdjacencyList() {
+		return adjacencyList;
+	}
 	private boolean allVisited(boolean visited[])
 	{
 		for (boolean b : visited) {
@@ -929,7 +935,7 @@ public class WeightedGraph implements GraphProcessing {
 			return null;
 		}
 		
-		
+		path.add(cycleEdge); //adding the last edges
 		System.out.println("A hamiltonian cycle was found: ");
 		for (int i = 0; i < path.size(); i++) {
 			System.out.println("Source: " + path.get(i)[0]
@@ -1083,6 +1089,21 @@ public class WeightedGraph implements GraphProcessing {
 				}
 				
 				return pathes;
+		
+	}
+	@Override
+	public void removeVertex(int ID) {
+		if (ID < 0 || ID > this.getVerticesCount())
+			throw new IllegalArgumentException("Invalid input for Vertex");
+		
+		this.adjacencyList.remove(ID);
+		//removing refrences:
+		for (int i = 0; i < this.getVerticesCount(); i++) {
+			for (int j = 0; j < this.adjacencyList.get(i).size(); j++) {
+				if (this.adjacencyList.get(i).get(j).getID() == ID)
+					this.adjacencyList.get(i).remove(j);
+			}
+		}
 		
 	}
 }

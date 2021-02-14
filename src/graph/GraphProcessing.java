@@ -128,6 +128,12 @@ public interface GraphProcessing {
 	
 	
 	/**
+	 * @param ID The ID of vertex that is going to be deleted
+	 */
+	public void removeVertex(int ID);
+	
+	
+	/**
 	 * Return all the edges of the graph in a linked list.
 	 * for an edge like [1,2,3] , [3,2,1] would also be included in the linked list
 	 * @param adjacencyList

@@ -4,6 +4,7 @@
 package graph;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 
@@ -11,6 +12,7 @@ import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
+import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
 import graph.WeightedGraph.Vertex;
@@ -65,6 +67,31 @@ public class GraphFile {
 		}
 		return graph;
 		
+	}
+	
+	public static void saveGraph(WeightedGraph graph,String address,String name) throws IOException
+	{
+		Element graphElement = new Element("graph");
+		graphElement.setAttribute("name", name);
+		int ID = 0;
+		for (LinkedList<Vertex> graphVertexs : graph.getAdjacencyList()) {
+			Element vertexElement = new Element("vertex");
+			vertexElement.setAttribute("ID", String.valueOf(ID++));
+			for (Vertex vertex : graphVertexs) {
+				Element connection = new Element("connection");
+				connection.setAttribute("destination",
+						String.valueOf(vertex.getID()));
+				connection.setAttribute("weight",
+						String.valueOf(vertex.getWeight()));
+				vertexElement.addContent(connection);
+			}
+			graphElement.addContent(vertexElement);
+		}
+		
+		XMLOutputter xmlOutputter = new XMLOutputter();
+		xmlOutputter.setFormat(Format.getPrettyFormat());
+		Document doc = new Document(graphElement);
+		xmlOutputter.output(doc,new FileWriter(address));
 	}
 
 }

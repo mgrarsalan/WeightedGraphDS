@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph>
+<vertex ID="0">
+<connection destination="2" weight="3" />
+</vertex>
+<vertex ID="1">
+<connection destination="2" weight="10" />
+<connection destination="3" weight="4" />
+</vertex>
+<vertex ID="2">
+<connection destination="0" weight="3" />
+<connection destination="1" weight="10" />
+<connection destination="3" weight="2" />
+<connection destination="4" weight="6" />
+</vertex>
+<vertex ID="3">
+<connection destination="1" weight="4" />
+<connection destination="2" weight="2" />
+<connection destination="4" weight="1" />
+</vertex>
+<vertex ID="4">
+<connection destination="2" weight="6" />
+<connection destination="3" weight="1" />
+</vertex>
+</graph>
